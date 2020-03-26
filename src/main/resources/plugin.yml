@@ -1,0 +1,14 @@
+name: ProtectionAPI
+version: ${project.version}
+main: me.harry0198.protectionapi.ProtectionAPI
+api-version: 1.13
+authors: [Harry0198]
+description: This plugin allow
+softdepend:
+  - WorldGuard
+  - WorldEdit
+
+commands:
+  protection:
+    description: Your description
+    usage: /<command>
