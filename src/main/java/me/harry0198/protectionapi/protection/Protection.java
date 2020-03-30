@@ -53,19 +53,4 @@ public interface Protection {
      * @return Collection of Player's Claims
      */
     Collection<UniversalRegion> getPlayerClaims(World world, Player player);
-
-    /**
-     * Gets Intersecting regions
-     * @param regionCollection Collection of Regions to Query
-     * @return Collection of intersecting regions
-     */
-    Collection<UniversalRegion> getIntersectingRegions(Collection<UniversalRegion> regionCollection);
-
-    /**
-     * Checks if region is intersecting with any other regions
-     * @param region UniversalRegion to check against
-     * @return If is intersecting
-     */
-    boolean isRegionIntersecting(UniversalRegion region);
-
 }

@@ -5,6 +5,7 @@ import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
+import me.harry0198.protectionapi.components.Region3D;
 import me.harry0198.protectionapi.components.UniversalRegion;
 import me.harry0198.protectionapi.protection.UniversalProtection;
 import org.bukkit.Bukkit;
@@ -48,19 +49,28 @@ public final class Protection_WorldGuard extends UniversalProtection {
     @Override
     public Collection<UniversalRegion> getRegions() {
         long current = System.currentTimeMillis();
-        Collection<ProtectedRegion> regions = new ArrayList<>();
+        Collection<UniversalRegion> regions = new ArrayList<>();
         for (World world : this.plugin.getServer().getWorlds()) {
-            RegionManager t = WorldGuard.getInstance().getPlatform().getRegionContainer().get(BukkitAdapter.adapt(world));
-            if (t != null)
-                regions.addAll(t.getRegions().values());
-        }
-//
-//        regions.stream().map(region -> new UniversalRegion.Builder(new Vector(region.getMinimumPoint().getBlockX(),region.getMinimumPoint().getBlockY(), region.getMinimumPoint().getBlockZ()),
-//                new Vector(region.getMinimumPoint().getBlockX(),region.getMinimumPoint().getBlockY(), region.getMinimumPoint().getBlockZ()),
-//                Bukkit.getWorld("world")).build()).collect(Collectors.toList());
 
-        System.out.println(System.currentTimeMillis() - current);
-        return null;
+            Collection<ProtectedRegion> regionPerWorld = new ArrayList<>();
+
+            RegionManager t = WorldGuard.getInstance().getPlatform().getRegionContainer().get(BukkitAdapter.adapt(world));
+            if (t != null) {
+                regionPerWorld.addAll(t.getRegions().values());
+            }
+
+
+            regions.addAll(regionPerWorld.stream().map(region -> new Region3D(world, region.getPoints().stream().map(
+                            points -> new Vector(points.getBlockX(), region.getMinimumPoint().getBlockY(), points.getBlockZ())).toArray(Vector[]::new))).collect(Collectors.toList()));
+        }
+
+        //TODO This is a stress test - remove once publishing
+        for (int i = 0; i < 100; i++) {
+            regions.add(new Region3D(Bukkit.getWorld("world"), new Vector(i,i,i), new Vector(i,i,i+1)));
+        }
+
+        System.out.println("ms: " + (System.currentTimeMillis() - current));
+        return regions;
     }
 
     @Override
@@ -75,21 +85,12 @@ public final class Protection_WorldGuard extends UniversalProtection {
 
     @Override
     public Collection<UniversalRegion> getPlayerClaims(Player player) {
+
         return null;
     }
 
     @Override
     public Collection<UniversalRegion> getPlayerClaims(World world, Player player) {
         return null;
-    }
-
-    @Override
-    public Collection<UniversalRegion> getIntersectingRegions(Collection<UniversalRegion> regionCollection) {
-        return null;
-    }
-
-    @Override
-    public boolean isRegionIntersecting(UniversalRegion region) {
-        return false;
     }
 }

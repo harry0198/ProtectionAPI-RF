@@ -23,7 +23,6 @@ public class Region3D extends UniversalRegion{
         this.maxY = getMaxYValue(points);
 
         planePoints = new Area2D(this.points);
-        System.out.println(planePoints.getPoints());
         setMinMaxPoint(this.points);
     }
 
@@ -54,11 +53,6 @@ public class Region3D extends UniversalRegion{
 
     public double getMaxY() {
         return maxY;
-    }
-
-    @Override
-    public Area2D getPlanePoints() {
-        return planePoints;
     }
 
     @Override

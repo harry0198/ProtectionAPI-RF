@@ -9,3 +9,4 @@ me/harry0198/protectionapi/ProtectionAPI.class
 me/harry0198/protectionapi/protection/Protection.class
 me/harry0198/protectionapi/components/Area2D.class
 me/harry0198/protectionapi/API.class
+me/harry0198/protectionapi/Octree$Node.class

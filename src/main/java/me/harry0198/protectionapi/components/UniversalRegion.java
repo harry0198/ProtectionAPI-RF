@@ -11,16 +11,19 @@ import java.util.stream.Collectors;
 
 public abstract class UniversalRegion {
 
+    //TODO add more region params. & look for way to stop creating millions of region objects -> way to check if exists already with types
     private Vector min, max;
     private World world;
+    private List<UUID> regionOwners;
+    private List<UUID> regionMembers;
+    private List<UUID> region;
+    private String regionProvider;
 
     public UniversalRegion(World world) {
         this.world = world;
     }
 
     public abstract Area getArea();
-
-    public abstract Area2D getPlanePoints();
 
     public World getWorld() {
         return world;
@@ -82,7 +85,9 @@ public abstract class UniversalRegion {
             if (regionList.size() > 15) {
                 Octree tree = ProtectionAPI.createOctree(world);
                 regionList.forEach(tree::insert);
-                if (tree.nearestRegions(this).size() < 1) return Collections.emptyList();
+                List<UniversalRegion> nearestRegions = tree.nearestRegions(this);
+                if (nearestRegions.size() < 1) return Collections.emptyList();
+                regions = nearestRegions;
             }
 
             Area area = getArea();
@@ -97,15 +102,16 @@ public abstract class UniversalRegion {
         return intersectingRegions;
     }
 
-    public boolean intersects(UniversalRegion region, Area areaToCheck) {
+    public boolean intersects(UniversalRegion region, Area thisArea) {
         // By checking this we remove "unnecessary" heavier checks
         if (intersectsBoundingBox(region)) {
-            Area thisArea = region.getArea();
-            thisArea.intersect(areaToCheck);
+            Area testArea = region.getArea();
+            testArea.intersect(thisArea);
             return !thisArea.isEmpty();
+        } else {
+            return false;
         }
 
-        return false;
     }
 
     protected boolean intersectsBoundingBox(UniversalRegion region) {
@@ -121,7 +127,9 @@ public abstract class UniversalRegion {
 
         if (rMinP.getBlockX() > max.getBlockX()) return false;
         if (rMinP.getBlockY() > max.getBlockY()) return false;
-        return rMinP.getBlockZ() <= max.getBlockZ();
+        if (rMinP.getBlockZ() > max.getBlockZ()) return false;
+
+        return true;
     }
 
 

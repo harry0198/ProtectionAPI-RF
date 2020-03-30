@@ -1,19 +1,35 @@
 package me.harry0198.protectionapi;
 
-import com.sun.xml.internal.bind.v2.TODO;
+import com.google.common.collect.ImmutableList;
 import me.harry0198.protectionapi.components.UniversalRegion;
+import me.harry0198.protectionapi.protection.Protection;
 import org.bukkit.util.Vector;
 
-import java.util.Collection;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class API {
 
-    final private ProtectionAPI main;
+    private final ProtectionAPI plugin;
+    private ImmutableList<Protection> protectionPlugins;
 
-    API(ProtectionAPI main){
-        this.main = main;
+    API(ProtectionAPI main, ImmutableList<Protection> protectionPlugins){
+        this.plugin = main;
+        this.protectionPlugins = protectionPlugins;
+
+    }
+
+    public ImmutableList<Protection> getProtectionPlugins() {
+        return protectionPlugins;
+    }
+
+    @Nullable
+    public Protection getProtectionPlugin(String plugin) {
+        for (Protection pl : protectionPlugins) {
+            if (pl.getName().equalsIgnoreCase(plugin)) return pl;
+        }
+        return null;
     }
 
     /**
@@ -27,8 +43,10 @@ public class API {
         return octane.isBetweenAxis(vector);
     }
 
-    public Collection<UniversalRegion> getAllRegions() {
-        return null;
+    public List<UniversalRegion> getAllRegions() {
+        List<UniversalRegion> reg = new ArrayList<>();
+        protectionPlugins.forEach(pl -> reg.addAll(pl.getRegions()));
+        return reg;
     }
 
 

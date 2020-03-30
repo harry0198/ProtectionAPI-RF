@@ -16,6 +16,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
+import javax.swing.plaf.synth.Region;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -32,14 +33,11 @@ public class ProtectionAPI extends JavaPlugin implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        new Region3D(Bukkit.getWorld("world"), new Vector(3,3,3), new Vector(5,5,5));
+        new Region3D(Bukkit.getWorld("world"), new Vector(40,0,100), new Vector(100,150,200)).getIntersectingRegions(api.getAllRegions());
         return false;
     }
 
-    final private static String[] module = { "GriefPrevention", "WorldGuard", "RedProtect", "PlotSquared", "uSkyBlock", "Towny" };
-
     private API api;
-    private ImmutableList<Protection> protectionPlugins;
 
     @Override
     public void onEnable() {
@@ -47,9 +45,7 @@ public class ProtectionAPI extends JavaPlugin implements CommandExecutor {
         this.getCommand("protection").setExecutor(this);
         saveDefaultConfig();
 
-        hook();
-
-        api = new API(this);
+        api = new API(this, ImmutableList.copyOf(hook()));
     }
 
     @Override
@@ -60,28 +56,30 @@ public class ProtectionAPI extends JavaPlugin implements CommandExecutor {
     public static Octree createOctree(World world) {
 
         // Set Octree range to world size
-            final WorldBorder wb = world.getWorldBorder();
-            final double radius = wb.getSize()/2;
-            final Location center = wb.getCenter();
+        final WorldBorder wb = world.getWorldBorder();
+        final double radius = wb.getSize() / 2;
+        final Location center = wb.getCenter();
 
-            return new Octree(1, world, new Octane(
-                    new Vector(center.getX() - radius, 0, center.getZ() - radius),
-                    new Vector(center.getX() + radius, 256, center.getZ() + radius)));
-//
+        return new Octree(1, world, new Octane(
+                new Vector(center.getX() - radius, 0, center.getZ() - radius),
+                new Vector(center.getX() + radius, 256, center.getZ() + radius)));
     }
 
-    private void hook() {
+    private List<Protection> hook() {
         List<Protection> protectionList = new ArrayList<>();
-        CollectionUtils.addIgnoreNull(protectionList, hookProtection("WorldGuard", Protection_WorldGuard.class,  "com.sk89q.worldguard"));
+        CollectionUtils.addIgnoreNull(protectionList, hookProtection("WorldGuard", Protection_WorldGuard.class, "com.sk89q.worldedit.WorldEdit", "com.sk89q.worldguard.WorldGuard"));
 
-        this.protectionPlugins = ImmutableList.copyOf(protectionList);
+        return protectionList;
     }
 
     private Protection hookProtection(String name, Class<? extends Protection> hookClass, String...packages) {
         try {
+            System.out.println("he");
             if (packagesExists(packages)) {
+                System.out.println("her");
                 Protection prot = hookClass.getConstructor(Plugin.class).newInstance(this);
                 info(String.format("[Protection] %s found: %s", name, prot.isEnabled() ? "Loaded" : "Waiting"));
+                System.out.println(prot);
                 return prot;
             }
         } catch (Exception e) {
