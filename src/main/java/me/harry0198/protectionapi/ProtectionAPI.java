@@ -1,7 +1,11 @@
 package me.harry0198.protectionapi;
 
+import com.google.common.collect.ImmutableList;
+import me.harry0198.protectionapi.components.Region3D;
 import me.harry0198.protectionapi.plugins.Protection_WorldGuard;
 import me.harry0198.protectionapi.protection.Protection;
+import org.apache.commons.collections4.CollectionUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.WorldBorder;
@@ -9,13 +13,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.ServicePriority;
-import org.bukkit.plugin.ServicesManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
-import java.security.Permissions;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 public class ProtectionAPI extends JavaPlugin implements CommandExecutor {
@@ -30,37 +32,22 @@ public class ProtectionAPI extends JavaPlugin implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        System.out.println("Success!");
-        hookProtection("WorldGuard", Protection_WorldGuard.class, ServicePriority.Normal, "com.sk89q.worldguard.WorldGuard");
+        new Region3D(Bukkit.getWorld("world"), new Vector(3,3,3), new Vector(5,5,5));
         return false;
     }
 
     final private static String[] module = { "GriefPrevention", "WorldGuard", "RedProtect", "PlotSquared", "uSkyBlock", "Towny" };
 
     private API api;
-    private ServicesManager servicesManager;
-
-    private HashMap<World, Octree> tree = new HashMap<>();
+    private ImmutableList<Protection> protectionPlugins;
 
     @Override
     public void onEnable() {
-        this.servicesManager = getServer().getServicesManager();
+
         this.getCommand("protection").setExecutor(this);
         saveDefaultConfig();
 
-        hookProtection("WorldGuard", Protection_WorldGuard.class, ServicePriority.Normal, "com.sk89q.worldguard");
-
-        // Sets bounds for Octrees
-        for (World world : getServer().getWorlds()){
-
-            final WorldBorder wb = world.getWorldBorder();
-            final double radius = wb.getSize()/2;
-            final Location center = wb.getCenter();
-
-            tree.put(world, new Octree(1, world, new Octane(
-                    new Vector(center.getX() - radius, 0, center.getZ() - radius),
-                    new Vector(center.getX() + radius, 256, center.getZ() + radius))));
-        }
+        hook();
 
         api = new API(this);
     }
@@ -70,18 +57,37 @@ public class ProtectionAPI extends JavaPlugin implements CommandExecutor {
 
     }
 
-    private void hookProtection(String name, Class<? extends Protection> hookClass, ServicePriority priority, String...packages) {
+    public static Octree createOctree(World world) {
+
+        // Set Octree range to world size
+            final WorldBorder wb = world.getWorldBorder();
+            final double radius = wb.getSize()/2;
+            final Location center = wb.getCenter();
+
+            return new Octree(1, world, new Octane(
+                    new Vector(center.getX() - radius, 0, center.getZ() - radius),
+                    new Vector(center.getX() + radius, 256, center.getZ() + radius)));
+//
+    }
+
+    private void hook() {
+        List<Protection> protectionList = new ArrayList<>();
+        CollectionUtils.addIgnoreNull(protectionList, hookProtection("WorldGuard", Protection_WorldGuard.class,  "com.sk89q.worldguard"));
+
+        this.protectionPlugins = ImmutableList.copyOf(protectionList);
+    }
+
+    private Protection hookProtection(String name, Class<? extends Protection> hookClass, String...packages) {
         try {
-            System.out.println("Try");
             if (packagesExists(packages)) {
-                System.out.println("exists");
                 Protection prot = hookClass.getConstructor(Plugin.class).newInstance(this);
-                servicesManager.register(Protection.class, prot, this, priority);
                 info(String.format("[Protection] %s found: %s", name, prot.isEnabled() ? "Loaded" : "Waiting"));
+                return prot;
             }
         } catch (Exception e) {
             severe(String.format("[Protection] There was an error hooking %s - check to make sure you're using a compatible version!", name));
         }
+        return null;
     }
 
     /**
@@ -103,11 +109,6 @@ public class ProtectionAPI extends JavaPlugin implements CommandExecutor {
         }
     }
 
-
-
-    public Octree getTree(World world) {
-        return tree.get(world);
-    }
 
     /**
      * Log any message to console with any level.

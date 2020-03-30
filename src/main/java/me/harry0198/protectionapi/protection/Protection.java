@@ -1,6 +1,6 @@
 package me.harry0198.protectionapi.protection;
 
-import me.harry0198.protectionapi.UniversalRegion;
+import me.harry0198.protectionapi.components.UniversalRegion;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 

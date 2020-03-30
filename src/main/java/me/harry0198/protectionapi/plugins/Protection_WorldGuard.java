@@ -1,12 +1,11 @@
 package me.harry0198.protectionapi.plugins;
 
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
-import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
-import me.harry0198.protectionapi.UniversalRegion;
+import me.harry0198.protectionapi.components.UniversalRegion;
 import me.harry0198.protectionapi.protection.UniversalProtection;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -55,10 +54,10 @@ public final class Protection_WorldGuard extends UniversalProtection {
             if (t != null)
                 regions.addAll(t.getRegions().values());
         }
-
-        regions.stream().map(region -> new UniversalRegion.Builder(new Vector(region.getMinimumPoint().getBlockX(),region.getMinimumPoint().getBlockY(), region.getMinimumPoint().getBlockZ()),
-                new Vector(region.getMinimumPoint().getBlockX(),region.getMinimumPoint().getBlockY(), region.getMinimumPoint().getBlockZ()),
-                Bukkit.getWorld("world")).build()).collect(Collectors.toList());
+//
+//        regions.stream().map(region -> new UniversalRegion.Builder(new Vector(region.getMinimumPoint().getBlockX(),region.getMinimumPoint().getBlockY(), region.getMinimumPoint().getBlockZ()),
+//                new Vector(region.getMinimumPoint().getBlockX(),region.getMinimumPoint().getBlockY(), region.getMinimumPoint().getBlockZ()),
+//                Bukkit.getWorld("world")).build()).collect(Collectors.toList());
 
         System.out.println(System.currentTimeMillis() - current);
         return null;

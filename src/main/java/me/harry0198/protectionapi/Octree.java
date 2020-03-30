@@ -1,5 +1,6 @@
 package me.harry0198.protectionapi;
 
+import me.harry0198.protectionapi.components.UniversalRegion;
 import org.bukkit.*;
 import org.bukkit.util.Vector;
 
@@ -10,14 +11,14 @@ import java.util.stream.Collectors;
 
 public class Octree {
 
-    class Node {
+    static class Node {
         Vector minLocation, maxLocation;
         UniversalRegion region;
 
         Node(UniversalRegion region) {
             this.region = region;
-            this.minLocation = region.getMin();
-            this.maxLocation = region.getMax();
+            this.minLocation = region.getMinPoint();
+            this.maxLocation = region.getMaxPoint();
         }
     }
 
@@ -97,10 +98,10 @@ public class Octree {
      *
      * @param region UniversalRegion object to insert
      */
-    void insert(UniversalRegion region) {
+    public void insert(UniversalRegion region) {
 
-        Vector minLocation = region.getMin();
-        Vector maxLocation = region.getMax();
+        Vector minLocation = region.getMinPoint();
+        Vector maxLocation = region.getMaxPoint();
 
         if (!API.isCuboidOverlapping(bounds, minLocation, maxLocation)) return;
 
@@ -172,13 +173,12 @@ public class Octree {
     /**
      * Find the nearest regions using the octree
      *
-     * @param tree Octree to search
      * @param region UniversalRegion object
      * @return A list of the nearest unviersalregions
      */
-    public static List<UniversalRegion> nearestRegions(Octree tree, UniversalRegion region) {
+    public List<UniversalRegion> nearestRegions(UniversalRegion region) {
 
-        dfs(tree, region);
+        dfs(this, region);
 
         List<Octree> octreeList = tmpOctreeList.stream().distinct().collect(Collectors.toList());
 
@@ -197,7 +197,7 @@ public class Octree {
             return false;
         }
 
-        return API.isCuboidOverlapping(octane, region.getMin(), region.getMax());
+        return API.isCuboidOverlapping(octane, region.getMinPoint(), region.getMaxPoint());
 
     }
 }
