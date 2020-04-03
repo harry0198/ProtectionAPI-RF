@@ -1,4 +1,4 @@
 # Table of contents
 
-* [API](README.md)
+* [Documentation](README.md)
 
