@@ -1,4 +1,4 @@
-package me.harry0198.protectionapi;
+package com.haroldstudios.protectionapi;
 
 import org.bukkit.util.Vector;
 

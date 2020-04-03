@@ -1,6 +1,6 @@
-package me.harry0198.protectionapi.protection;
+package com.haroldstudios.protectionapi.protection;
 
-import me.harry0198.protectionapi.components.UniversalRegion;
+import com.haroldstudios.protectionapi.components.UniversalRegion;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
@@ -22,6 +22,7 @@ public interface Protection {
 
     /**
      * Gets all Regions from RegionProvider
+     * Defaults to async thread
      * @return Collection of Regions
      */
     Collection<UniversalRegion> getRegions();

@@ -1,4 +1,4 @@
-package me.harry0198.protectionapi.components;
+package com.haroldstudios.protectionapi.components;
 
 import com.google.common.collect.ImmutableList;
 import org.bukkit.World;

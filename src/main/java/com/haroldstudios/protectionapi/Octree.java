@@ -1,6 +1,6 @@
-package me.harry0198.protectionapi;
+package com.haroldstudios.protectionapi;
 
-import me.harry0198.protectionapi.components.UniversalRegion;
+import com.haroldstudios.protectionapi.components.UniversalRegion;
 import org.bukkit.*;
 import org.bukkit.util.Vector;
 

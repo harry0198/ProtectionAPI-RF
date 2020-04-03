@@ -1,4 +1,4 @@
-package me.harry0198.protectionapi.protection;
+package com.haroldstudios.protectionapi.protection;
 
 public abstract class UniversalProtection implements Protection {
 

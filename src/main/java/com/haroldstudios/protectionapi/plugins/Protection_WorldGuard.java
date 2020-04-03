@@ -1,13 +1,14 @@
-package me.harry0198.protectionapi.plugins;
+package com.haroldstudios.protectionapi.plugins;
 
+import com.haroldstudios.protectionapi.protection.UniversalProtection;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.protection.flags.Flag;
+import com.sk89q.worldguard.protection.flags.Flags;
 import com.sk89q.worldguard.protection.managers.RegionManager;
-import com.sk89q.worldguard.protection.regions.ProtectedRegion;
-import me.harry0198.protectionapi.components.Region3D;
-import me.harry0198.protectionapi.components.UniversalRegion;
-import me.harry0198.protectionapi.protection.UniversalProtection;
+import com.haroldstudios.protectionapi.components.Region3D;
+import com.haroldstudios.protectionapi.components.UniversalRegion;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -16,6 +17,7 @@ import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -24,12 +26,10 @@ public final class Protection_WorldGuard extends UniversalProtection {
     private final String name = "WorldGuard";
     private Plugin plugin;
     private WorldGuardPlugin worldGuard;
-    private Logger log;
 
-    @SuppressWarnings("ConstantConditions")
     public Protection_WorldGuard(Plugin plugin) {
         this.plugin = plugin;
-        this.log = plugin.getLogger();
+        Logger log = plugin.getLogger();
         getRegions();
 
         if (worldGuard == null) {
@@ -46,22 +46,14 @@ public final class Protection_WorldGuard extends UniversalProtection {
         return name;
     }
 
+
     @Override
     public Collection<UniversalRegion> getRegions() {
+
         long current = System.currentTimeMillis();
         Collection<UniversalRegion> regions = new ArrayList<>();
         for (World world : this.plugin.getServer().getWorlds()) {
-
-            Collection<ProtectedRegion> regionPerWorld = new ArrayList<>();
-
-            RegionManager t = WorldGuard.getInstance().getPlatform().getRegionContainer().get(BukkitAdapter.adapt(world));
-            if (t != null) {
-                regionPerWorld.addAll(t.getRegions().values());
-            }
-
-
-            regions.addAll(regionPerWorld.stream().map(region -> new Region3D(world, region.getPoints().stream().map(
-                            points -> new Vector(points.getBlockX(), region.getMinimumPoint().getBlockY(), points.getBlockZ())).toArray(Vector[]::new))).collect(Collectors.toList()));
+            regions.addAll(getRegions(world));
         }
 
         //TODO This is a stress test - remove once publishing
@@ -75,7 +67,16 @@ public final class Protection_WorldGuard extends UniversalProtection {
 
     @Override
     public Collection<UniversalRegion> getRegions(World world) {
-        return null;
+        RegionManager t = WorldGuard.getInstance().getPlatform().getRegionContainer().get(BukkitAdapter.adapt(world));
+        if (t == null) return Collections.emptyList();
+
+        return t.getRegions().values().stream().map(region -> new Region3D(world, region.getPoints().stream().map(
+                points -> new Vector(points.getBlockX(), region.getMinimumPoint().getBlockY(), points.getBlockZ())).toArray(Vector[]::new))
+                .setRegionOwners(region.getOwners().getUniqueIds())
+                .setRegionMembers(region.getMembers().getUniqueIds())
+                .setRegionProvider(this.getName())
+                .setWelcomeMessages(region.getFlag(Flags.GREET_MESSAGE))).collect(Collectors.toList());
+
     }
 
     @Override

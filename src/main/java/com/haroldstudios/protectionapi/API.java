@@ -1,8 +1,8 @@
-package me.harry0198.protectionapi;
+package com.haroldstudios.protectionapi;
 
 import com.google.common.collect.ImmutableList;
-import me.harry0198.protectionapi.components.UniversalRegion;
-import me.harry0198.protectionapi.protection.Protection;
+import com.haroldstudios.protectionapi.protection.Protection;
+import com.haroldstudios.protectionapi.components.UniversalRegion;
 import org.bukkit.util.Vector;
 
 import javax.annotation.Nullable;

@@ -1,9 +1,9 @@
-package me.harry0198.protectionapi;
+package com.haroldstudios.protectionapi;
 
 import com.google.common.collect.ImmutableList;
-import me.harry0198.protectionapi.components.Region3D;
-import me.harry0198.protectionapi.plugins.Protection_WorldGuard;
-import me.harry0198.protectionapi.protection.Protection;
+import com.haroldstudios.protectionapi.components.Region3D;
+import com.haroldstudios.protectionapi.plugins.Protection_WorldGuard;
+import com.haroldstudios.protectionapi.protection.Protection;
 import org.apache.commons.collections4.CollectionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -16,7 +16,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
-import javax.swing.plaf.synth.Region;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -106,7 +105,6 @@ public class ProtectionAPI extends JavaPlugin implements CommandExecutor {
             return false;
         }
     }
-
 
     /**
      * Log any message to console with any level.
