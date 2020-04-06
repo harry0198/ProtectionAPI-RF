@@ -2,7 +2,7 @@ package com.haroldstudios.protectionapi;
 
 import com.google.common.collect.ImmutableList;
 import com.haroldstudios.protectionapi.components.Region3D;
-import com.haroldstudios.protectionapi.plugins.Protection_WorldGuard;
+import com.haroldstudios.protectionapi.plugins.*;
 import com.haroldstudios.protectionapi.protection.Protection;
 import org.apache.commons.collections4.CollectionUtils;
 import org.bukkit.Bukkit;
@@ -32,7 +32,12 @@ public class ProtectionAPI extends JavaPlugin implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        new Region3D(Bukkit.getWorld("world"), new Vector(40,0,100), new Vector(100,150,200)).getIntersectingRegions(api.getAllRegions());
+        long time = System.currentTimeMillis();
+        api.getAllRegions();
+        System.out.println("ms:" + (System.currentTimeMillis() - time));
+        long time2 = System.currentTimeMillis();
+        System.out.println(new Region3D(Bukkit.getWorld("world"), new Vector(50,0,50), new Vector(100,150,200)).getIntersectingRegions(api.getAllRegions()));
+        System.out.println("ms:" + (System.currentTimeMillis() - time2));
         return false;
     }
 
@@ -67,22 +72,24 @@ public class ProtectionAPI extends JavaPlugin implements CommandExecutor {
     private List<Protection> hook() {
         List<Protection> protectionList = new ArrayList<>();
         CollectionUtils.addIgnoreNull(protectionList, hookProtection("WorldGuard", Protection_WorldGuard.class, "com.sk89q.worldedit.WorldEdit", "com.sk89q.worldguard.WorldGuard"));
+        CollectionUtils.addIgnoreNull(protectionList, hookProtection("GriefPrevention", Protection_GriefPrevention.class, "me.ryanhamshire.GriefPrevention.GriefPrevention"));
+        CollectionUtils.addIgnoreNull(protectionList, hookProtection("RedProtect", Protection_RedProtect.class, "br.net.fabiozumbi12.RedProtect.Bukkit.RedProtect"));
+        //TODO Valid package?
+        CollectionUtils.addIgnoreNull(protectionList, hookProtection("PlotSquared", Protection_PlotSquared.class, "com.github.intellectualsites.plotsquared.plot.object.Plot"));
+        CollectionUtils.addIgnoreNull(protectionList, hookProtection("PlotSquared", Protection_Towny.class, "com.palmergames.bukkit.towny.Towny"));
 
         return protectionList;
     }
 
     private Protection hookProtection(String name, Class<? extends Protection> hookClass, String...packages) {
         try {
-            System.out.println("he");
             if (packagesExists(packages)) {
-                System.out.println("her");
                 Protection prot = hookClass.getConstructor(Plugin.class).newInstance(this);
-                info(String.format("[Protection] %s found: %s", name, prot.isEnabled() ? "Loaded" : "Waiting"));
-                System.out.println(prot);
+                info(String.format("%s found: %s", name, prot.isEnabled() ? "Loaded" : "Waiting"));
                 return prot;
             }
         } catch (Exception e) {
-            severe(String.format("[Protection] There was an error hooking %s - check to make sure you're using a compatible version!", name));
+            severe(String.format("There was an error hooking %s - check to make sure you're using a compatible version!", name));
         }
         return null;
     }
@@ -143,8 +150,12 @@ public class ProtectionAPI extends JavaPlugin implements CommandExecutor {
         log(Level.SEVERE, msg);
     }
 
-    public static ProtectionAPI getInstance() {
-        return getPlugin(ProtectionAPI.class);
+    /**
+     * Getter for the API
+     * @return API instance
+     */
+    public static API getInstance() {
+        return getPlugin(ProtectionAPI.class).getApi();
     }
     public API getApi() { return this.api; }
 

@@ -2,10 +2,11 @@ package com.haroldstudios.protectionapi.components;
 
 import com.haroldstudios.protectionapi.Octree;
 import com.haroldstudios.protectionapi.ProtectionAPI;
+import jdk.internal.jline.internal.Nullable;
 import org.bukkit.World;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
 import java.awt.geom.Area;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -24,8 +25,9 @@ public abstract class UniversalRegion {
     private Date dateCreated;
     private List<Flag> flags;
     private Priority priority;
+    private Collection<UniversalRegion> childRegions;
 
-    public UniversalRegion(World world) {
+    public UniversalRegion(@NotNull World world) {
         this.world = world;
     }
 
@@ -118,6 +120,32 @@ public abstract class UniversalRegion {
     @Nullable
     public String getFarewellMessage() {
         return this.farewellMessage;
+    }
+
+    /**
+     * Gets the date region was originally created if supported
+     * @return Date created if exists otherwise null
+     */
+    @Nullable
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    /**
+     * Checks if the region has a valid date ID
+     * @return If region has date
+     */
+    public boolean supportsDateCreated() {
+        return dateCreated != null;
+    }
+
+    /**
+     * Gets the child regions, if any. These are only provided by the plugins
+     * If the region happens to have a region inside of it. Unless explicitly registered it is ignored.
+     * @return Collection of child regions
+     */
+    public Collection<UniversalRegion> getChildRegions() {
+        return childRegions;
     }
 
     /**
@@ -223,6 +251,26 @@ public abstract class UniversalRegion {
      */
     public UniversalRegion setFarewellMessage(String message) {
         this.farewellMessage = message;
+        return this;
+    }
+
+    /**
+     * Sets the child regions of the region
+     * @param regions UniversalRegion
+     * @return This Class
+     */
+    public UniversalRegion setChildRegions(Collection<UniversalRegion> regions) {
+        this.childRegions = regions;
+        return this;
+    }
+
+    /**
+     * Sets the date the region was originally created
+     * @param date Date created
+     * @return This Class
+     */
+    public UniversalRegion setDateCreated(Date date) {
+        this.dateCreated = date;
         return this;
     }
 

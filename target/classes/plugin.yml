@@ -1,12 +1,16 @@
 name: ProtectionAPI
 version: ${project.version}
-main: me.harry0198.protectionapi.ProtectionAPI
+main: com.haroldstudios.protectionapi.ProtectionAPI
 api-version: 1.13
 authors: [Harry0198]
 description: This plugin allow
 softdepend:
   - WorldGuard
   - WorldEdit
+  - GriefPrevention
+  - RedProtect
+  - PlotSquared
+  - Towny
 
 commands:
   protection:

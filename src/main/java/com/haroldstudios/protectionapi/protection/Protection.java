@@ -2,10 +2,12 @@ package com.haroldstudios.protectionapi.protection;
 
 import com.haroldstudios.protectionapi.components.UniversalRegion;
 import org.bukkit.World;
-import org.bukkit.entity.Player;
 
 import java.util.Collection;
 
+/*
+    This is an interface for the individual modules - main API methods in API
+ */
 public interface Protection {
 
     /**
@@ -28,7 +30,7 @@ public interface Protection {
     Collection<UniversalRegion> getRegions();
 
     /**
-     * Gets all regions from RegionProvider in specified world
+     * Gets all regions from RegionProvider in specified world (often more efficient)
      * @param world World to query
      * @return Collection of all regions in world
      */
@@ -41,17 +43,8 @@ public interface Protection {
     boolean supportsPolygonRegions();
 
     /**
-     * Gets a list of the player's claims
-     * @param player Player's claims to get
-     * @return Collection of Player's Claims
+     * Gets the plugin's instance from the original provider
+     * @return Provider plugin instance
      */
-    Collection<UniversalRegion> getPlayerClaims(Player player);
-
-    /**
-     * Gets a list of player's claims in specified world
-     * @param world World to query
-     * @param player Player's claims to get
-     * @return Collection of Player's Claims
-     */
-    Collection<UniversalRegion> getPlayerClaims(World world, Player player);
+    Object getExternalInstance();
 }

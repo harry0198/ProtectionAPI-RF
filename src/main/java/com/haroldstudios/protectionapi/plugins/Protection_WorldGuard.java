@@ -1,27 +1,24 @@
 package com.haroldstudios.protectionapi.plugins;
 
-import com.haroldstudios.protectionapi.protection.UniversalProtection;
+import com.haroldstudios.protectionapi.protection.Protection;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
+import com.sk89q.worldedit.math.BlockVector2;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
-import com.sk89q.worldguard.protection.flags.Flag;
 import com.sk89q.worldguard.protection.flags.Flags;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.haroldstudios.protectionapi.components.Region3D;
 import com.haroldstudios.protectionapi.components.UniversalRegion;
-import org.bukkit.Bukkit;
+import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import org.bukkit.World;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-public final class Protection_WorldGuard extends UniversalProtection {
+public final class Protection_WorldGuard implements Protection {
 
     private final String name = "WorldGuard";
     private Plugin plugin;
@@ -30,7 +27,6 @@ public final class Protection_WorldGuard extends UniversalProtection {
     public Protection_WorldGuard(Plugin plugin) {
         this.plugin = plugin;
         Logger log = plugin.getLogger();
-        getRegions();
 
         if (worldGuard == null) {
             Plugin worldGuard = plugin.getServer().getPluginManager().getPlugin(name);
@@ -42,6 +38,11 @@ public final class Protection_WorldGuard extends UniversalProtection {
     }
 
     @Override
+    public boolean isEnabled() {
+        return worldGuard != null;
+    }
+
+    @Override
     public String getName() {
         return name;
     }
@@ -50,18 +51,10 @@ public final class Protection_WorldGuard extends UniversalProtection {
     @Override
     public Collection<UniversalRegion> getRegions() {
 
-        long current = System.currentTimeMillis();
         Collection<UniversalRegion> regions = new ArrayList<>();
         for (World world : this.plugin.getServer().getWorlds()) {
             regions.addAll(getRegions(world));
         }
-
-        //TODO This is a stress test - remove once publishing
-        for (int i = 0; i < 100; i++) {
-            regions.add(new Region3D(Bukkit.getWorld("world"), new Vector(i,i,i), new Vector(i,i,i+1)));
-        }
-
-        System.out.println("ms: " + (System.currentTimeMillis() - current));
         return regions;
     }
 
@@ -70,12 +63,7 @@ public final class Protection_WorldGuard extends UniversalProtection {
         RegionManager t = WorldGuard.getInstance().getPlatform().getRegionContainer().get(BukkitAdapter.adapt(world));
         if (t == null) return Collections.emptyList();
 
-        return t.getRegions().values().stream().map(region -> new Region3D(world, region.getPoints().stream().map(
-                points -> new Vector(points.getBlockX(), region.getMinimumPoint().getBlockY(), points.getBlockZ())).toArray(Vector[]::new))
-                .setRegionOwners(region.getOwners().getUniqueIds())
-                .setRegionMembers(region.getMembers().getUniqueIds())
-                .setRegionProvider(this.getName())
-                .setWelcomeMessages(region.getFlag(Flags.GREET_MESSAGE))).collect(Collectors.toList());
+        return t.getRegions().values().stream().map(region -> createRegion(world, region)).collect(Collectors.toList());
 
     }
 
@@ -85,13 +73,39 @@ public final class Protection_WorldGuard extends UniversalProtection {
     }
 
     @Override
-    public Collection<UniversalRegion> getPlayerClaims(Player player) {
-
-        return null;
+    public Object getExternalInstance() {
+        return worldGuard;
     }
 
-    @Override
-    public Collection<UniversalRegion> getPlayerClaims(World world, Player player) {
-        return null;
+    // Creates region based from protected region
+    private UniversalRegion createRegion(World world, ProtectedRegion region) {
+
+        int minY = region.getMinimumPoint().getBlockY();
+        int maxY = region.getMaximumPoint().getBlockY();
+
+        /* TODO Improve here */
+        List<Vector> points = new ArrayList<>();
+
+        int i = 0;
+
+        for (BlockVector2 point : region.getPoints()) {
+
+            Vector v = new Vector(point.getBlockX(), maxY, point.getBlockZ());
+
+            if (i == 0) v.setY(minY);
+            points.add(v);
+
+            // Global region not supported yet --
+            if (region.getId().equals("__global__")) points.add(v);
+            i++;
+        }
+
+        return new Region3D(world, points.toArray(new Vector[0]))
+                .setRegionOwners(region.getOwners().getUniqueIds())
+                .setRegionMembers(region.getMembers().getUniqueIds())
+                .setRegionProvider(this.getName())
+                .setWelcomeMessages(region.getFlag(Flags.GREET_MESSAGE)) //TODO check if this is actually getting the messages
+                .setFarewellMessage(region.getFlag(Flags.FAREWELL_MESSAGE));
     }
+
 }

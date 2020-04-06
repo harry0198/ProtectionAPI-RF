@@ -3,9 +3,9 @@ package com.haroldstudios.protectionapi;
 import com.google.common.collect.ImmutableList;
 import com.haroldstudios.protectionapi.protection.Protection;
 import com.haroldstudios.protectionapi.components.UniversalRegion;
+import jdk.internal.jline.internal.Nullable;
 import org.bukkit.util.Vector;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,37 +24,47 @@ public class API {
         return protectionPlugins;
     }
 
+    /**
+     * Gets individual protection plugin and methods' interface
+     * @param plugin Plugin name to get
+     * @return Protection plugin's protectionAPI interface
+     */
     @Nullable
-    public Protection getProtectionPlugin(String plugin) {
+    public Protection getProtectionPluginAsInterface(String plugin) {
         for (Protection pl : protectionPlugins) {
             if (pl.getName().equalsIgnoreCase(plugin)) return pl;
         }
+
         return null;
     }
 
     /**
-     * Is point within octane
-     *
-     * @param vector Point
-     * @param octane Octane
-     * @return True if between axis, false if not.
+     * Gets the plugin instance of the region provider inputted
+     * @param plugin Plugin name to get instance of
+     * @return Plugin instance
      */
-    public boolean isPointBetweenOctane(Vector vector, Octane octane){
-        return octane.isBetweenAxis(vector);
+    @Nullable
+    public Object getProtectionPluginInstance(String plugin) {
+        Protection pl = getProtectionPluginAsInterface(plugin);
+        if (pl != null)
+            return pl.getExternalInstance();
+
+        return null;
     }
 
+    /**
+     * Gets every region by the supported region providers
+     * @return List of UniversalRegions
+     */
     public List<UniversalRegion> getAllRegions() {
         List<UniversalRegion> reg = new ArrayList<>();
-        protectionPlugins.forEach(pl -> reg.addAll(pl.getRegions()));
+        protectionPlugins.forEach(pl -> {
+            System.out.println(pl.isEnabled());
+            if (pl.isEnabled())
+                reg.addAll(pl.getRegions());
+        });
         return reg;
     }
-
-
-//        TODO
-//    TODO Convert all loaded regions on startup -- every time called convert unconverted.
-//    TODO Ex: Copy list of all regions from plugins and compare each time if converted - least resource usage
-//    TODO
-
 
     /**
      * Checks if a cuboid overlaps another octane
