@@ -97,6 +97,7 @@
             <id>github-towny</id>
             <url>https://maven.pkg.github.com/TownyAdvanced/Towny</url>
         </repository>
+
     </repositories>
 
     <dependencies>
@@ -107,6 +108,14 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
             <version>4.1</version>
+        </dependency>
+
+        <!-- Spigot Dependency -->
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.13-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- WorldEdit dependency (For WorldGuard) -->
@@ -125,13 +134,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Spigot Dependency -->
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.13-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
 
         <!-- GriefPrevention Dependency -->
         <dependency>

@@ -16,7 +16,7 @@ import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-public class Protection_RedProtect implements Protection {
+public final class Protection_RedProtect implements Protection {
 
     private final String name = "RedProtect";
     private Plugin plugin;

@@ -32,7 +32,7 @@ public final class Protection_WorldGuard implements Protection {
             Plugin worldGuard = plugin.getServer().getPluginManager().getPlugin(name);
             if (worldGuard != null && worldGuard.isEnabled()) {
                 this.worldGuard = (WorldGuardPlugin) worldGuard;
-                log.info(String.format("[ProtectionAPI] %s hooked.", name));
+                log.info(String.format("%s hooked.", name));
             }
         }
     }
@@ -50,8 +50,8 @@ public final class Protection_WorldGuard implements Protection {
 
     @Override
     public Collection<UniversalRegion> getRegions() {
-
         Collection<UniversalRegion> regions = new ArrayList<>();
+
         for (World world : this.plugin.getServer().getWorlds()) {
             regions.addAll(getRegions(world));
         }
@@ -60,6 +60,7 @@ public final class Protection_WorldGuard implements Protection {
 
     @Override
     public Collection<UniversalRegion> getRegions(World world) {
+
         RegionManager t = WorldGuard.getInstance().getPlatform().getRegionContainer().get(BukkitAdapter.adapt(world));
         if (t == null) return Collections.emptyList();
 

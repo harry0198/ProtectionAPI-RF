@@ -7,13 +7,18 @@ import org.bukkit.util.Vector;
 import java.awt.*;
 import java.awt.geom.Area;
 
-public class Region3D extends UniversalRegion{
+public final class Region3D extends UniversalRegion{
 
     private ImmutableList<Vector> points;
     private Area2D planePoints;
     private double minY;
     private double maxY;
 
+    /**
+     * Class Constructor
+     * @param world World region is based in
+     * @param points Points of region e.g Min and Max or Polygon points
+     */
     public Region3D(World world, Vector... points) {
         super(world);
         if (points.length < 2) throw new IllegalArgumentException("Must have 2 or more vector points!");
@@ -47,10 +52,18 @@ public class Region3D extends UniversalRegion{
         return minVal;
     }
 
+    /**
+     * Get Minimum Y Coord
+     * @return Min Y Coord
+     */
     public double getMinY() {
         return minY;
     }
 
+    /**
+     * Get Maximum Y Coord
+     * @return Max Y Coord
+     */
     public double getMaxY() {
         return maxY;
     }

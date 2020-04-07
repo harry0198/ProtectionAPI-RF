@@ -2,30 +2,55 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fcd1c750-f739-4043-9261-cf6b40152e5d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/plugins/Protection_GriefPrevention.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/plugins/Protection_PlotSquared.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/plugins/Protection_RedProtect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/plugins/Protection_Towny.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProtectionAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProtectionAPI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProtectionAPI.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/API.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/Octane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/Octane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/Octree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/Octree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/ProtectionAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/ProtectionAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/components/Area2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/components/Area2D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/components/Flag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/components/Flag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/components/Region3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/components/Region3D.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/components/UniversalRegion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/components/UniversalRegion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/plugins/Protection_PlotSquared.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/plugins/Protection_PlotSquared.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/plugins/Protection_RedProtect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/plugins/Protection_RedProtect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/plugins/Protection_Towny.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/plugins/Protection_Towny.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/plugins/Protection_WorldGuard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/plugins/Protection_WorldGuard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/protection/Protection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/protection/Protection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/haroldstudios/protectionapi/protection/UniversalProtection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ProtectionAPI-RF" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -45,15 +70,19 @@
     </option>
   </component>
   <component name="ProjectId" id="1Zf5zCcyGEEtNNBqwXZcWEJXNFs" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="JavaMethodFindUsagesOptions.isSearchForTextOccurrences" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MailMe gradle" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -73,13 +102,34 @@
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
-      <command value="mvn clean install" />
       <command value="mvn -X" />
       <command value="mvn package" />
+      <command value="gradle build" />
       <command value="mvn clean package" />
+      <command value="mvn install" />
+      <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager" selected="JAR Application.spigot.jar">
+  <component name="RunManager" selected="Gradle.ProtectionAPI-RF [build]">
+    <configuration name="ProtectionAPI-RF [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="spigot.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/server/spigot.jar" />
       <option name="VM_PARAMETERS" value="-DIReallyKnowWhatIAmDoingISwear" />
@@ -116,9 +166,11 @@
     <list>
       <item itemvalue="JAR Application.spigot.jar" />
       <item itemvalue="Maven.Package" />
+      <item itemvalue="Gradle.ProtectionAPI-RF [build]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ProtectionAPI-RF [build]" />
         <item itemvalue="JAR Application.spigot.jar" />
       </list>
     </recent_temporary>
@@ -159,6 +211,7 @@
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="UniversalRegion.java collision detection updated - [UnTested]&#10;UniversalRegion.java is now abstract Region3D is now required parameter for collision detetection. Removed service providers. Removed most API methods - now encapsulated in UniversalRegion.java" />
     <MESSAGE value="UniversalRegion.java collision detection updated - [UnTested]&#10;UniversalRegion.java is now abstract Region3D is now required parameter for collision detetection.&#10;Removed service providers.&#10;Removed most API methods - now encapsulated in UniversalRegion.java" />
     <MESSAGE value="Collision Detection Tested - Working" />
@@ -181,6 +234,10 @@
     <state x="442" y="-1147" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/-553.-1417.2560.1339@-553.-1417.2560.1339" timestamp="1586193594235" />
     <state x="2435" y="293" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/1440.23.2560.1339@1440.23.2560.1339" timestamp="1585570958968" />
     <state x="653" y="215" key="#com.intellij.ide.util.MemberChooser/0.23.1680.952@0.23.1680.952" timestamp="1586185433167" />
+    <state x="445" y="-1052" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1586263605766">
+      <screen x="-553" y="-1417" width="2560" height="1339" />
+    </state>
+    <state x="445" y="-1052" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.23.1440.877/-553.-1417.2560.1339@-553.-1417.2560.1339" timestamp="1586263605766" />
     <state x="314" y="-1095" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585596008031">
       <screen x="-567" y="-1417" width="2560" height="1339" />
     </state>
@@ -193,39 +250,48 @@
     <state x="132" y="-1309" key="CommitChangelistDialog2/0.23.1440.877/-567.-1417.2560.1339@-567.-1417.2560.1339" timestamp="1585590155039" />
     <state x="459" y="100" key="CommitChangelistDialog2/0.23.1680.949@0.23.1680.949" timestamp="1585603717111" />
     <state x="459" y="100" key="CommitChangelistDialog2/0.23.1680.952@0.23.1680.952" timestamp="1585226615445" />
-    <state x="628" y="258" key="FileChooserDialogImpl" timestamp="1585223758156">
-      <screen x="0" y="23" width="1680" height="949" />
+    <state x="404" y="-1066" key="FileChooserDialogImpl" timestamp="1586262109366">
+      <screen x="-553" y="-1417" width="2560" height="1417" />
     </state>
+    <state x="404" y="-1066" key="FileChooserDialogImpl/0.23.1440.808/-553.-1417.2560.1417@-553.-1417.2560.1417" timestamp="1586262109366" />
     <state x="628" y="258" key="FileChooserDialogImpl/0.23.1680.949@0.23.1680.949" timestamp="1585223758156" />
     <state x="628" y="259" key="FileChooserDialogImpl/0.23.1680.952@0.23.1680.952" timestamp="1585217626764" />
-    <state width="2518" height="417" key="GridCell.Tab.0.bottom" timestamp="1586204445931">
+    <state width="2518" height="417" key="GridCell.Tab.0.bottom" timestamp="1586264004227">
       <screen x="-553" y="-1417" width="2560" height="1339" />
     </state>
-    <state width="2518" height="417" key="GridCell.Tab.0.bottom/0.23.1440.877/-553.-1417.2560.1339@-553.-1417.2560.1339" timestamp="1586204445931" />
+    <state width="2518" height="417" key="GridCell.Tab.0.bottom/0.23.1440.808/-553.-1417.2560.1417@-553.-1417.2560.1417" timestamp="1586259830381" />
+    <state width="2518" height="417" key="GridCell.Tab.0.bottom/0.23.1440.811/-553.-1417.2560.1417@-553.-1417.2560.1417" timestamp="1586253182940" />
+    <state width="2518" height="417" key="GridCell.Tab.0.bottom/0.23.1440.877/-553.-1417.2560.1339@-553.-1417.2560.1339" timestamp="1586264004227" />
     <state width="2518" height="466" key="GridCell.Tab.0.bottom/0.23.1440.877/-567.-1417.2560.1339@-567.-1417.2560.1339" timestamp="1585598460719" />
     <state width="1329" height="469" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.23.2560.1339@1440.23.2560.1339" timestamp="1585583010782" />
     <state width="1638" height="401" key="GridCell.Tab.0.bottom/0.23.1680.949@0.23.1680.949" timestamp="1585638122487" />
     <state width="1638" height="314" key="GridCell.Tab.0.bottom/0.23.1680.952@0.23.1680.952" timestamp="1585226307752" />
-    <state width="2518" height="417" key="GridCell.Tab.0.center" timestamp="1586204445930">
+    <state width="2518" height="417" key="GridCell.Tab.0.center" timestamp="1586264004224">
       <screen x="-553" y="-1417" width="2560" height="1339" />
     </state>
-    <state width="2518" height="417" key="GridCell.Tab.0.center/0.23.1440.877/-553.-1417.2560.1339@-553.-1417.2560.1339" timestamp="1586204445930" />
+    <state width="2518" height="417" key="GridCell.Tab.0.center/0.23.1440.808/-553.-1417.2560.1417@-553.-1417.2560.1417" timestamp="1586259830380" />
+    <state width="2518" height="417" key="GridCell.Tab.0.center/0.23.1440.811/-553.-1417.2560.1417@-553.-1417.2560.1417" timestamp="1586253182939" />
+    <state width="2518" height="417" key="GridCell.Tab.0.center/0.23.1440.877/-553.-1417.2560.1339@-553.-1417.2560.1339" timestamp="1586264004224" />
     <state width="2518" height="466" key="GridCell.Tab.0.center/0.23.1440.877/-567.-1417.2560.1339@-567.-1417.2560.1339" timestamp="1585598460717" />
     <state width="1329" height="469" key="GridCell.Tab.0.center/0.23.1440.877/1440.23.2560.1339@1440.23.2560.1339" timestamp="1585583010781" />
     <state width="1638" height="401" key="GridCell.Tab.0.center/0.23.1680.949@0.23.1680.949" timestamp="1585638122486" />
     <state width="1638" height="314" key="GridCell.Tab.0.center/0.23.1680.952@0.23.1680.952" timestamp="1585226307751" />
-    <state width="2518" height="417" key="GridCell.Tab.0.left" timestamp="1586204445928">
+    <state width="2518" height="417" key="GridCell.Tab.0.left" timestamp="1586264004223">
       <screen x="-553" y="-1417" width="2560" height="1339" />
     </state>
-    <state width="2518" height="417" key="GridCell.Tab.0.left/0.23.1440.877/-553.-1417.2560.1339@-553.-1417.2560.1339" timestamp="1586204445928" />
+    <state width="2518" height="417" key="GridCell.Tab.0.left/0.23.1440.808/-553.-1417.2560.1417@-553.-1417.2560.1417" timestamp="1586259830380" />
+    <state width="2518" height="417" key="GridCell.Tab.0.left/0.23.1440.811/-553.-1417.2560.1417@-553.-1417.2560.1417" timestamp="1586253182938" />
+    <state width="2518" height="417" key="GridCell.Tab.0.left/0.23.1440.877/-553.-1417.2560.1339@-553.-1417.2560.1339" timestamp="1586264004223" />
     <state width="2518" height="466" key="GridCell.Tab.0.left/0.23.1440.877/-567.-1417.2560.1339@-567.-1417.2560.1339" timestamp="1585598460717" />
     <state width="1329" height="469" key="GridCell.Tab.0.left/0.23.1440.877/1440.23.2560.1339@1440.23.2560.1339" timestamp="1585583010780" />
     <state width="1638" height="401" key="GridCell.Tab.0.left/0.23.1680.949@0.23.1680.949" timestamp="1585638122486" />
     <state width="1638" height="314" key="GridCell.Tab.0.left/0.23.1680.952@0.23.1680.952" timestamp="1585226307751" />
-    <state width="2518" height="417" key="GridCell.Tab.0.right" timestamp="1586204445931">
+    <state width="2518" height="417" key="GridCell.Tab.0.right" timestamp="1586264004226">
       <screen x="-553" y="-1417" width="2560" height="1339" />
     </state>
-    <state width="2518" height="417" key="GridCell.Tab.0.right/0.23.1440.877/-553.-1417.2560.1339@-553.-1417.2560.1339" timestamp="1586204445931" />
+    <state width="2518" height="417" key="GridCell.Tab.0.right/0.23.1440.808/-553.-1417.2560.1417@-553.-1417.2560.1417" timestamp="1586259830380" />
+    <state width="2518" height="417" key="GridCell.Tab.0.right/0.23.1440.811/-553.-1417.2560.1417@-553.-1417.2560.1417" timestamp="1586253182940" />
+    <state width="2518" height="417" key="GridCell.Tab.0.right/0.23.1440.877/-553.-1417.2560.1339@-553.-1417.2560.1339" timestamp="1586264004225" />
     <state width="2518" height="466" key="GridCell.Tab.0.right/0.23.1440.877/-567.-1417.2560.1339@-567.-1417.2560.1339" timestamp="1585598460718" />
     <state width="1329" height="469" key="GridCell.Tab.0.right/0.23.1440.877/1440.23.2560.1339@1440.23.2560.1339" timestamp="1585583010782" />
     <state width="1638" height="401" key="GridCell.Tab.0.right/0.23.1680.949@0.23.1680.949" timestamp="1585638122486" />
@@ -280,10 +346,10 @@
       <screen x="1440" y="23" width="2560" height="1339" />
     </state>
     <state x="1440" y="356" key="new project wizard/0.23.1440.877/1440.23.2560.1339@1440.23.2560.1339" timestamp="1585570555602" />
-    <state x="217" y="-1126" width="1021" height="953" key="run.anything.popup" timestamp="1586197295509">
+    <state x="217" y="-1126" width="1021" height="953" key="run.anything.popup" timestamp="1586263706792">
       <screen x="-553" y="-1417" width="2560" height="1339" />
     </state>
-    <state x="217" y="-1126" width="1021" height="953" key="run.anything.popup/0.23.1440.877/-553.-1417.2560.1339@-553.-1417.2560.1339" timestamp="1586197295509" />
+    <state x="217" y="-1126" width="1021" height="953" key="run.anything.popup/0.23.1440.877/-553.-1417.2560.1339@-553.-1417.2560.1339" timestamp="1586263706792" />
     <state x="2210" y="314" width="1021" height="953" key="run.anything.popup/0.23.1440.877/1440.23.2560.1339@1440.23.2560.1339" timestamp="1585571286955" />
     <state x="505" y="229" width="670" height="675" key="run.anything.popup/0.23.1680.949@0.23.1680.949" timestamp="1585603298920" />
     <state x="-203" y="-1112" width="670" height="676" key="search.everywhere.popup" timestamp="1586201879266">

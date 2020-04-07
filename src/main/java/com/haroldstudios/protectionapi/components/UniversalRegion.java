@@ -27,7 +27,11 @@ public abstract class UniversalRegion {
     private Priority priority;
     private Collection<UniversalRegion> childRegions;
 
-    public UniversalRegion(@NotNull World world) {
+    /**
+     * Class constructor
+     * @param world World region is based in
+     */
+    protected UniversalRegion(@NotNull World world) {
         this.world = world;
     }
 
@@ -281,35 +285,38 @@ public abstract class UniversalRegion {
      */
     public Collection<UniversalRegion> getIntersectingRegions(Collection<UniversalRegion> regions) {
 
-        Map<World, List<UniversalRegion>> regionSplit = regions.stream()
-                .collect(Collectors.groupingBy(UniversalRegion::getWorld));
-
         List<UniversalRegion> intersectingRegions = new ArrayList<>();
 
-        for (World world : regionSplit.keySet()) {
-            List<UniversalRegion> regionList = regionSplit.get(world);
+        regions = regions.stream()
+                .collect(Collectors.groupingBy(UniversalRegion::getWorld)).get(this.getWorld());
 
-            // If lots of regions, use octree and check for nearest regions instead of running intersection detection on every region
-            if (regionList.size() > 15) {
-                Octree tree = ProtectionAPI.createOctree(world);
-                regionList.forEach(tree::insert);
-                List<UniversalRegion> nearestRegions = tree.nearestRegions(this);
-                if (nearestRegions.size() < 1) return Collections.emptyList();
-                regions = nearestRegions;
-            }
 
-            Area area = getArea();
+        // If lots of regions, use octree and check for nearest regions instead of running intersection detection on every region
+        if (regions.size() > 15) {
+            Octree tree = ProtectionAPI.createOctree(world);
+            regions.forEach(tree::insert);
+            List<UniversalRegion> nearestRegions = tree.nearestRegions(this);
+            if (nearestRegions.size() < 1) return Collections.emptyList();
+            regions = nearestRegions;
+        }
 
-            for (UniversalRegion region : regions) {
-                if (intersects(region, area)) {
-                    intersectingRegions.add(region);
-                }
+        Area area = getArea();
+
+        for (UniversalRegion region : regions) {
+            if (intersects(region, area)) {
+                intersectingRegions.add(region);
             }
         }
 
         return intersectingRegions;
     }
 
+    /**
+     * Checks if a UniversalRegion intersects with Area
+     * @param region Universal Region to check against
+     * @param thisArea Area to check against
+     * @return If region intersects with area
+     */
     public boolean intersects(UniversalRegion region, Area thisArea) {
         // By checking this we remove "unnecessary" heavier checks
         if (intersectsBoundingBox(region)) {

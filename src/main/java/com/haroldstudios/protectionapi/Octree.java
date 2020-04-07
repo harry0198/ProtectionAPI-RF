@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Octree {
+public final class Octree {
 
     static class Node {
         Vector minLocation, maxLocation;

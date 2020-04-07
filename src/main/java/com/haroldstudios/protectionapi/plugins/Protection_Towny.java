@@ -20,8 +20,9 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 // Towny is not very efficient for us in its data handling. Thus it will result in creating lots of UniversalRegions
-// Due to its TownBlocks which essentially split up the world.
-public class Protection_Towny implements Protection {
+// Due to its TownBlocks which essentially split up the world where claimed as it doesn't support polygon regions e.g one big outline.
+// On the positives, it allows us to handle plots easier.
+public final class Protection_Towny implements Protection {
 
     private final String name = "Towny";
     private Plugin plugin;
@@ -50,6 +51,7 @@ public class Protection_Towny implements Protection {
         return name;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public Collection<UniversalRegion> getRegions() {
 
@@ -58,15 +60,15 @@ public class Protection_Towny implements Protection {
         // Town Blocks are sections of the world that are divided into plots within a town
         // Players can buy these plots and thus have their own management system
 
-        // Size of chunks
-        int size = TownySettings.getTownBlockSize();
+        // Size of Section
+        int townBlockSize = TownySettings.getTownBlockSize();
 
         for (Town town : TownyAPI.getInstance().getDataSource().getTowns()) {
             for (TownBlock block : town.getTownBlocks()){
 
                 WorldCoord worldCoord = block.getWorldCoord();
                 int townBlockHeight = worldCoord.getBukkitWorld().getMaxHeight() - 1;
-                int townBlockSize = TownySettings.getTownBlockSize();
+
                 int blockX = 0;
                 int blockZ = 0;
                 for (int x = 0; x < townBlockSize; ++x) {
@@ -100,12 +102,7 @@ public class Protection_Towny implements Protection {
                     if (registered)
                         resident[0] = Bukkit.getOfflinePlayer(block.getResident().getName()).getUniqueId();
                 } catch (NotRegisteredException ignore) {}
-                System.out.println("****");
-System.out.println(min);
-                System.out.println(max);
-                System.out.println(blockX + ", " + blockZ);
 
-                System.out.println("****");
                 regions.add(new Region3D(worldCoord.getBukkitWorld(), min, max)
                         .setRegionProvider(name)
                         .setRegionOwners(Collections.singletonList(Bukkit.getOfflinePlayer(town.getMayor().getName()).getUniqueId()))

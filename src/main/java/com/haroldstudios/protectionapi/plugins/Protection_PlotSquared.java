@@ -2,7 +2,7 @@ package com.haroldstudios.protectionapi.plugins;
 
 
 import com.github.intellectualsites.plotsquared.api.PlotAPI;
-import com.github.intellectualsites.plotsquared.plot.PlotSquared;
+import com.github.intellectualsites.plotsquared.bukkit.BukkitMain;
 import com.github.intellectualsites.plotsquared.plot.object.Plot;
 import com.haroldstudios.protectionapi.components.Region3D;
 import com.haroldstudios.protectionapi.components.UniversalRegion;
@@ -18,11 +18,11 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-public class Protection_PlotSquared implements Protection {
+public final class Protection_PlotSquared implements Protection {
 
         private final String name = "PlotSquared";
         private Plugin plugin;
-        private PlotSquared plotSquared;
+        private BukkitMain plotSquared;
         private PlotAPI plotAPI;
 
 
@@ -33,9 +33,9 @@ public class Protection_PlotSquared implements Protection {
                 if (plotSquared == null) {
                         Plugin plotSquared = plugin.getServer().getPluginManager().getPlugin(name);
                         if (plotSquared != null && plotSquared.isEnabled()) {
-                                this.plotSquared = (PlotSquared) plotSquared;
+                                this.plotSquared = (BukkitMain) plotSquared;
                                 this.plotAPI = new PlotAPI();
-                                log.info(String.format("[ProtectionAPI] %s hooked.", name));
+                                log.info(String.format("%s hooked.", name));
                         }
                 }
         }
@@ -57,8 +57,7 @@ public class Protection_PlotSquared implements Protection {
 
                 for (Plot plot : plotAPI.getAllPlots()) {
 
-                        //TODO Works?
-                        Vector[] vectors = (Vector[]) plot.getAllCorners().stream().map(location -> new Vector(location.getX(), location.getY(), location.getZ())).toArray();
+                        Vector[] vectors = plot.getAllCorners().stream().map(location -> new Vector(location.getX(), location.getY(), location.getZ())).toArray(Vector[]::new);
 
                         regions.add(new Region3D(
                                 Bukkit.getWorld(plot.getWorldName()), vectors)

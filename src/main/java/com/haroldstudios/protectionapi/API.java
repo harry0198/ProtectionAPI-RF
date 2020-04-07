@@ -9,7 +9,8 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
-public class API {
+@SuppressWarnings("unused")
+public final class API {
 
     private final ProtectionAPI plugin;
     private ImmutableList<Protection> protectionPlugins;
@@ -46,7 +47,7 @@ public class API {
     @Nullable
     public Object getProtectionPluginInstance(String plugin) {
         Protection pl = getProtectionPluginAsInterface(plugin);
-        if (pl != null)
+        if (pl != null && pl.isEnabled())
             return pl.getExternalInstance();
 
         return null;
@@ -59,7 +60,6 @@ public class API {
     public List<UniversalRegion> getAllRegions() {
         List<UniversalRegion> reg = new ArrayList<>();
         protectionPlugins.forEach(pl -> {
-            System.out.println(pl.isEnabled());
             if (pl.isEnabled())
                 reg.addAll(pl.getRegions());
         });

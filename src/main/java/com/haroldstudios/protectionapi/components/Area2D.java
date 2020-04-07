@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Area2D {
+public final class Area2D {
 
     private ImmutableList<Point> points;
 

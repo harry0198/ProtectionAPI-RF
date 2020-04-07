@@ -5,7 +5,7 @@ import org.bukkit.World;
 
 import java.util.Collection;
 
-/*
+/**
     This is an interface for the individual modules - main API methods in API
  */
 public interface Protection {

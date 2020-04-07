@@ -1,17 +1,13 @@
 package com.haroldstudios.protectionapi;
 
 import com.google.common.collect.ImmutableList;
-import com.haroldstudios.protectionapi.components.Region3D;
 import com.haroldstudios.protectionapi.plugins.*;
 import com.haroldstudios.protectionapi.protection.Protection;
 import org.apache.commons.collections4.CollectionUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.WorldBorder;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
@@ -20,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-public class ProtectionAPI extends JavaPlugin implements CommandExecutor {
+public final class ProtectionAPI extends JavaPlugin implements CommandExecutor {
 
     //TODO
     //IslandWorld
@@ -29,17 +25,6 @@ public class ProtectionAPI extends JavaPlugin implements CommandExecutor {
     //Residence
     //Kingdoms
     //Bentobox
-
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        long time = System.currentTimeMillis();
-        api.getAllRegions();
-        System.out.println("ms:" + (System.currentTimeMillis() - time));
-        long time2 = System.currentTimeMillis();
-        System.out.println(new Region3D(Bukkit.getWorld("world"), new Vector(50,0,50), new Vector(100,150,200)).getIntersectingRegions(api.getAllRegions()));
-        System.out.println("ms:" + (System.currentTimeMillis() - time2));
-        return false;
-    }
 
     private API api;
 
@@ -52,11 +37,11 @@ public class ProtectionAPI extends JavaPlugin implements CommandExecutor {
         api = new API(this, ImmutableList.copyOf(hook()));
     }
 
-    @Override
-    public void onDisable(){
-
-    }
-
+    /**
+     * Creates an Octree
+     * @param world World to take
+     * @return Octree
+     */
     public static Octree createOctree(World world) {
 
         // Set Octree range to world size
@@ -74,9 +59,8 @@ public class ProtectionAPI extends JavaPlugin implements CommandExecutor {
         CollectionUtils.addIgnoreNull(protectionList, hookProtection("WorldGuard", Protection_WorldGuard.class, "com.sk89q.worldedit.WorldEdit", "com.sk89q.worldguard.WorldGuard"));
         CollectionUtils.addIgnoreNull(protectionList, hookProtection("GriefPrevention", Protection_GriefPrevention.class, "me.ryanhamshire.GriefPrevention.GriefPrevention"));
         CollectionUtils.addIgnoreNull(protectionList, hookProtection("RedProtect", Protection_RedProtect.class, "br.net.fabiozumbi12.RedProtect.Bukkit.RedProtect"));
-        //TODO Valid package?
         CollectionUtils.addIgnoreNull(protectionList, hookProtection("PlotSquared", Protection_PlotSquared.class, "com.github.intellectualsites.plotsquared.plot.object.Plot"));
-        CollectionUtils.addIgnoreNull(protectionList, hookProtection("PlotSquared", Protection_Towny.class, "com.palmergames.bukkit.towny.Towny"));
+        CollectionUtils.addIgnoreNull(protectionList, hookProtection("Towny", Protection_Towny.class, "com.palmergames.bukkit.towny.Towny"));
 
         return protectionList;
     }
@@ -154,7 +138,7 @@ public class ProtectionAPI extends JavaPlugin implements CommandExecutor {
      * Getter for the API
      * @return API instance
      */
-    public static API getInstance() {
+    public static API getAPI() {
         return getPlugin(ProtectionAPI.class).getApi();
     }
     public API getApi() { return this.api; }
