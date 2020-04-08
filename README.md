@@ -1,6 +1,1 @@
----
-description: The Protection API documentation resource page
----
-
-# Documentation
-
+See the WIKI: https://wiki.haroldstudios.com
