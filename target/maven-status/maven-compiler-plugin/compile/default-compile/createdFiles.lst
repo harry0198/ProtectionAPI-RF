@@ -12,5 +12,6 @@ com/haroldstudios/protectionapi/Octane.class
 com/haroldstudios/protectionapi/components/Priority.class
 com/haroldstudios/protectionapi/components/Region3D.class
 com/haroldstudios/protectionapi/API.class
+com/haroldstudios/protectionapi/UpdateChecker.class
 com/haroldstudios/protectionapi/components/Area2D.class
 com/haroldstudios/protectionapi/plugins/Protection_PlotSquared.class

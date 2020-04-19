@@ -19,11 +19,9 @@ import java.util.stream.Collectors;
 public final class Protection_RedProtect implements Protection {
 
     private final String name = "RedProtect";
-    private Plugin plugin;
     private RedProtect redProtect;
 
     public Protection_RedProtect(Plugin plugin) {
-        this.plugin = plugin;
         Logger log = plugin.getLogger();
 
         if (redProtect == null) {

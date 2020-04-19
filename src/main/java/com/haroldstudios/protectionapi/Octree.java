@@ -1,7 +1,7 @@
 package com.haroldstudios.protectionapi;
 
 import com.haroldstudios.protectionapi.components.UniversalRegion;
-import org.bukkit.*;
+import org.bukkit.World;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
@@ -11,30 +11,24 @@ import java.util.stream.Collectors;
 
 public final class Octree {
 
-    static class Node {
-        Vector minLocation, maxLocation;
-        UniversalRegion region;
-
-        Node(UniversalRegion region) {
-            this.region = region;
-            this.minLocation = region.getMinPoint();
-            this.maxLocation = region.getMaxPoint();
-        }
-    }
-
-    private Octane bounds;
-    private int jumps; //how many stages down the tree?
-
-    private List<Node> nodeList = new ArrayList<>();
-    private World world;
-
     private static final int MAX_JUMPS = 17;
     private static final int MAX_CAPACITY = 2;
 
-    private Octree frontNorthWest, frontNorthEast,
-            frontSouthWest, frontSouthEast,
-            backNorthWest, backNorthEast,
-            backSouthWest, backSouthEast = null;
+    private final Octane bounds;
+    private final int jumps; //how many stages down the tree?
+
+    private final List<Node> nodeList = new ArrayList<>();
+    private final World world;
+
+
+    private Octree frontNorthWest,
+            frontNorthEast,
+            frontSouthWest,
+            frontSouthEast,
+            backNorthWest,
+            backNorthEast,
+            backSouthWest,
+            backSouthEast = null;
 
 
     public Octree(int jumps, World world, Octane octane){
@@ -150,7 +144,7 @@ public final class Octree {
         }
     }
 
-    private static List<Octree> tmpOctreeList = new ArrayList<>();
+    private static final List<Octree> tmpOctreeList = new ArrayList<>();
 
     private static void dfs(Octree tree, UniversalRegion region) {
         if (tree == null)
@@ -199,5 +193,17 @@ public final class Octree {
 
         return API.isCuboidOverlapping(octane, region.getMinPoint(), region.getMaxPoint());
 
+    }
+
+    static class Node {
+        public Vector minLocation,
+                maxLocation;
+        public UniversalRegion region;
+
+        Node(UniversalRegion region) {
+            this.region = region;
+            this.minLocation = region.getMinPoint();
+            this.maxLocation = region.getMaxPoint();
+        }
     }
 }

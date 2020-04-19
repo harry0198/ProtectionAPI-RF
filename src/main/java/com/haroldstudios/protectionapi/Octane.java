@@ -4,7 +4,8 @@ import org.bukkit.util.Vector;
 
 public final class Octane {
 
-    private Vector min, max;
+    private final Vector min,
+                         max;
 
     /**
      * Class Constructor

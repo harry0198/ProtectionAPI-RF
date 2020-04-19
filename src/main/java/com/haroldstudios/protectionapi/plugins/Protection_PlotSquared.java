@@ -21,13 +21,11 @@ import java.util.stream.Collectors;
 public final class Protection_PlotSquared implements Protection {
 
         private final String name = "PlotSquared";
-        private Plugin plugin;
         private BukkitMain plotSquared;
         private PlotAPI plotAPI;
 
 
         public Protection_PlotSquared(Plugin plugin) {
-                this.plugin = plugin;
                 Logger log = plugin.getLogger();
 
                 if (plotSquared == null) {

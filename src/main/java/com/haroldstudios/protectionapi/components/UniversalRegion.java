@@ -2,10 +2,10 @@ package com.haroldstudios.protectionapi.components;
 
 import com.haroldstudios.protectionapi.Octree;
 import com.haroldstudios.protectionapi.ProtectionAPI;
-import jdk.internal.jline.internal.Nullable;
 import org.bukkit.World;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.awt.geom.Area;
 import java.util.*;

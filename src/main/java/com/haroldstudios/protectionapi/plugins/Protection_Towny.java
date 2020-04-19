@@ -25,11 +25,9 @@ import java.util.stream.Collectors;
 public final class Protection_Towny implements Protection {
 
     private final String name = "Towny";
-    private Plugin plugin;
     private Towny towny;
 
     public Protection_Towny(Plugin plugin) {
-        this.plugin = plugin;
         Logger log = plugin.getLogger();
 
         if (towny == null) {
