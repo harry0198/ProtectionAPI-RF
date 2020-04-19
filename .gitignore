@@ -23,9 +23,6 @@
 hs_err_pid*
 
 server/
-.idea
-server
-logs
 .idea/
 logs/
 ProtectionAPI.iml

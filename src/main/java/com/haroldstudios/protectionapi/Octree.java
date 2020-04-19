@@ -168,7 +168,7 @@ public final class Octree {
      * Find the nearest regions using the octree
      *
      * @param region UniversalRegion object
-     * @return A list of the nearest unviersalregions
+     * @return A list of the nearest universalregions
      */
     public List<UniversalRegion> nearestRegions(UniversalRegion region) {
 
@@ -184,6 +184,10 @@ public final class Octree {
         }
 
         return Collections.emptyList();
+    }
+
+    public static List<UniversalRegion> getIntersectingRegions(Octree tree) {
+
     }
 
     public static boolean isBoundsInOctane(Octane octane, UniversalRegion region) {
