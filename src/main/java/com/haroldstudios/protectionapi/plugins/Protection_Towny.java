@@ -28,6 +28,7 @@ public final class Protection_Towny implements Protection {
     private Towny towny;
 
     public Protection_Towny(Plugin plugin) {
+
         Logger log = plugin.getLogger();
 
         if (towny == null) {

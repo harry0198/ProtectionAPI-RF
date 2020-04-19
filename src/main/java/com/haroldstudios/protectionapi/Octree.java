@@ -13,7 +13,6 @@ public final class Octree {
 
     private static final int MAX_JUMPS = 17;
     private static final int MAX_CAPACITY = 2;
-
     private final Octane bounds;
     private final int jumps; //how many stages down the tree?
 
@@ -198,7 +197,6 @@ public final class Octree {
         return API.isCuboidOverlapping(octane, region.getMinPoint(), region.getMaxPoint());
 
     }
-
     static class Node {
         public Vector minLocation,
                 maxLocation;

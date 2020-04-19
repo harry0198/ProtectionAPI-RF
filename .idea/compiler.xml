@@ -9,7 +9,7 @@
         <module name="ProtectionAPI-RF" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.6">
+    <bytecodeTargetLevel>
       <module name="ProtectionAPI" target="1.8" />
       <module name="ProtectionAPI.main" target="1.8" />
       <module name="ProtectionAPI.test" target="1.8" />

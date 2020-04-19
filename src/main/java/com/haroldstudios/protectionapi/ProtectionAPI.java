@@ -35,6 +35,7 @@ public final class ProtectionAPI extends JavaPlugin implements CommandExecutor {
         saveDefaultConfig();
 
         api = new API(this, ImmutableList.copyOf(hook()));
+
         new UpdateChecker(this, 74568).getVersion((version) -> {
             if (getDescription().getVersion().equalsIgnoreCase(version)) {
                 info("There is not a new update available.");
@@ -42,6 +43,7 @@ public final class ProtectionAPI extends JavaPlugin implements CommandExecutor {
                 info("There is a new update available. \nIt is important you update to the latest version to remove bugs and ensure developers don't try to interact with methods that don't exist!");
             }
         });
+
     }
 
     /**

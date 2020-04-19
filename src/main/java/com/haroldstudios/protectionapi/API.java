@@ -3,9 +3,8 @@ package com.haroldstudios.protectionapi;
 import com.google.common.collect.ImmutableList;
 import com.haroldstudios.protectionapi.protection.Protection;
 import com.haroldstudios.protectionapi.components.UniversalRegion;
+import jdk.internal.jline.internal.Nullable;
 import org.bukkit.util.Vector;
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,6 @@ public final class API {
 
     API(ProtectionAPI main, ImmutableList<Protection> protectionPlugins){
         this.protectionPlugins = protectionPlugins;
-
     }
 
     public ImmutableList<Protection> getProtectionPlugins() {
