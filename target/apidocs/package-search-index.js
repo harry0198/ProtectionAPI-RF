@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.haroldstudios.protectionapi"},{"l":"com.haroldstudios.protectionapi.components"},{"l":"com.haroldstudios.protectionapi.plugins"},{"l":"com.haroldstudios.protectionapi.protection"}]
